@@ -206,9 +206,9 @@ ArgParser.prototype = {
       return Opt(opt);
     });
 
-    if (argv.indexOf("--help") >= 0 || argv.indexOf("-h") >= 0) {
-      return this.print(this.getUsage());
-    }
+   //  if (argv.indexOf("--help") >= 0 || argv.indexOf("-h") >= 0) {
+   //    return this.print(this.getUsage());
+   //  }
 
     var options = {};
     var args = argv.map(function(arg) {
