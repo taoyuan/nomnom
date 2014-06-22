@@ -233,21 +233,29 @@ ArgParser.prototype = {
           that.setOption(options, ch, true);
         });
 
-        /* -v key */
-        if (!that.opt(last).flag) {
-           if (val.isValue)  {
-              that.setOption(options, last, val.value);
-              return Arg(); // skip next turn - swallow arg
-           }
-           else {
-              that.print("'-" + (that.opt(last).name || last) + "'"
-                + " expects a value\n\n" + that.getUsage(), 1);
-           }
+        if (val.isValue)  {
+          that.setOption(options, last, val.value);
+          return Arg(); // skip next turn - swallow arg
         }
         else {
           /* -v */
           that.setOption(options, last, true);
         }
+        /* -v key */
+      //  if (!that.opt(last).flag) {
+      //     if (val.isValue)  {
+      //        that.setOption(options, last, val.value);
+      //        return Arg(); // skip next turn - swallow arg
+      //     }
+      //     else {
+      //        that.print("'-" + (that.opt(last).name || last) + "'"
+      //           + " expects a value\n\n" + that.getUsage(), 1);
+      //     }
+      //  }
+      //  else {
+      //     /* -v */
+      //     that.setOption(options, last, true);
+      //  }
 
       }
       else if (arg.full) {
@@ -256,20 +264,28 @@ ArgParser.prototype = {
         /* --key */
         if (value === undefined) {
           /* --key value */
-          if (!that.opt(arg.full).flag) {
-            if (val.isValue) {
+          if (val.isValue) {
               that.setOption(options, arg.full, val.value);
               return Arg();
-            }
-            else {
-              that.print("'--" + (that.opt(arg.full).name || arg.full) + "'"
-                + " expects a value\n\n" + that.getUsage(), 1);
-            }
           }
           else {
             /* --flag */
             value = true;
           }
+         //  if (!that.opt(arg.full).flag) {
+         //    if (val.isValue) {
+         //     that.setOption(options, arg.full, val.value);
+         //     return Arg();
+         //    }
+         //    else {
+         //     that.print("'--" + (that.opt(arg.full).name || arg.full) + "'"
+         //        + " expects a value\n\n" + that.getUsage(), 1);
+         //    }
+         //  }
+         //  else {
+         //    /* --flag */
+         //    value = true;
+         //  }
         }
         that.setOption(options, arg.full, value);
       }
